@@ -194,9 +194,11 @@ No database, no environment variables, no build step required.
 ## Author
 
 **Anshika Mittal**  
-USN: 1AUA23BIT005  
-B.Tech Information and Communication Technology  
+USN: 1AUA23BIT005
 Semester 6
+B.Tech Information and Communication Technology  
+Adani University
+
 
 ---
 
