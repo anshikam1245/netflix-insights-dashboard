@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Countries — Netflix Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="inner-page">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Country Analysis</span>
+    <h1 class="page-title">Country <span class="accent">Insights</span></h1>
+    <p class="page-desc">
+      Explore which countries produce the most content on Netflix and discover
+      how genre preferences differ across the globe — from Bollywood to K-Drama.
+    </p>
+  </div>
+
+  <!-- ── Top Countries Bar Chart ─────────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Top 10 Content-Producing Countries</h2>
+    <div class="chart-grid chart-grid-1">
+      {% for chart in png_charts %}
+      <div class="chart-card">
+        <h3 class="chart-card-title">{{ chart.title }}</h3>
+        <div class="chart-img-wrap">
+          <img src="{{ url_for('static', filename='charts_png/' + chart.file) }}"
+               alt="{{ chart.title }}" class="chart-img" loading="lazy" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ── Sunburst ─────────────────────────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Country → Genre — Interactive Sunburst</h2>
+    {% for chart in html_charts %}
+    <div class="chart-card chart-card-full">
+      <h3 class="chart-card-title">{{ chart.title }}</h3>
+      <div class="plotly-wrap plotly-wrap-tall">
+        <iframe src="{{ url_for('static', filename='charts/' + chart.file) }}"
+                class="plotly-iframe" frameborder="0"
+                title="{{ chart.title }}"></iframe>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ── Country Spotlights ───────────────────────────────── -->
+  <section class="country-spotlights">
+    <h2 class="chart-section-title">Country Spotlights</h2>
+    <div class="spotlights-grid">
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇺🇸</div>
+        <h4>United States</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:100%"></div>
+        </div>
+        <p>Largest catalog by far. Highly genre-diverse — Hollywood's breadth and scale remains unmatched.</p>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇮🇳</div>
+        <h4>India</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:62%"></div>
+        </div>
+        <p>Dominated by International Movies and Dramas — Bollywood's massive output fuels South Asian subscriber growth.</p>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇬🇧</div>
+        <h4>United Kingdom</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:45%"></div>
+        </div>
+        <p>Strong in Drama and Crime TV — British prestige television is a reliable Netflix draw globally.</p>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇯🇵</div>
+        <h4>Japan</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:32%"></div>
+        </div>
+        <p>Almost entirely Anime and International content — a narrow but fiercely loyal global niche.</p>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇰🇷</div>
+        <h4>South Korea</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:28%"></div>
+        </div>
+        <p>Overwhelmingly K-Drama — concentrated but disproportionately high global impact per title.</p>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="spotlight-flag">🇫🇷</div>
+        <h4>France</h4>
+        <div class="spotlight-bar-wrap">
+          <div class="spotlight-bar" style="width:22%"></div>
+        </div>
+        <p>Leads European content with a strong mix of Thrillers, International, and Art-house Dramas.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Insight Box -->
+  <section class="insight-box">
+    <h2 class="insight-title">Country Insights</h2>
+    <ul class="insight-list">
+      <li>The <strong>USA and India</strong> together account for over half of all titled content on the platform.</li>
+      <li>Each country has a <strong>distinct genre fingerprint</strong> — India → Bollywood, Korea → K-Drama, Japan → Anime.</li>
+      <li>The sunburst chart shows the US catalog is far more <strong>genre-diverse</strong> than any other nation.</li>
+      <li>European countries (France, Spain, Germany) are growing contributors via Netflix's <strong>local originals</strong> strategy.</li>
+    </ul>
+  </section>
+
+</div>
+{% endblock %}

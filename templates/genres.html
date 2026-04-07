@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Genres — Netflix Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="inner-page">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Genre Analysis</span>
+    <h1 class="page-title">Genre <span class="accent">Insights</span></h1>
+    <p class="page-desc">
+      From International Dramas to Stand-Up Comedy — see which genres dominate
+      Netflix's catalog and how they split across Movies and TV Shows.
+    </p>
+  </div>
+
+  <!-- ── Top Genres Bar Chart ─────────────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Top 15 Genres by Tag Count</h2>
+    <div class="chart-grid chart-grid-1">
+      {% for chart in png_charts %}
+      <div class="chart-card">
+        <h3 class="chart-card-title">{{ chart.title }}</h3>
+        <div class="chart-img-wrap">
+          <img src="{{ url_for('static', filename='charts_png/' + chart.file) }}"
+               alt="{{ chart.title }}" class="chart-img" loading="lazy" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ── Interactive Treemap ──────────────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Genre × Content Type — Interactive Treemap</h2>
+    {% for chart in html_charts %}
+    <div class="chart-card chart-card-full">
+      <h3 class="chart-card-title">{{ chart.title }}</h3>
+      <div class="plotly-wrap plotly-wrap-tall">
+        <iframe src="{{ url_for('static', filename='charts/' + chart.file) }}"
+                class="plotly-iframe" frameborder="0"
+                title="{{ chart.title }}"></iframe>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ── Genre Quick-Facts ────────────────────────────────── -->
+  <section class="genre-facts">
+    <h2 class="chart-section-title">Genre Quick-Facts</h2>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>International Movies</h4>
+        <p>The single largest genre tag on Netflix — reflecting its global distribution strategy beyond Hollywood.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>Dramas</h4>
+        <p>Consistently top-2 in both Movies and TV Shows. Prestige drama drives subscriber retention.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>Comedies</h4>
+        <p>Third-largest category — stand-up specials and rom-coms anchor mid-budget catalog volume.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>Crime TV</h4>
+        <p>Leads TV Show sub-genres — true crime and thriller series generate the highest repeat viewing.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>Children & Family</h4>
+        <p>Surprisingly underrepresented — Netflix's catalog skews adult, not family-oriented.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-icon"></span>
+        <h4>Anime</h4>
+        <p>A niche but globally impactful vertical — especially powerful for audience retention in East Asia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insight Box -->
+  <section class="insight-box">
+    <h2 class="insight-title">Genre Insights</h2>
+    <ul class="insight-list">
+      <li><strong>International Movies</strong> is the #1 tag — Netflix's global catalog is its biggest differentiator.</li>
+      <li>Dramas and Comedies together account for nearly <strong>40%</strong> of all genre tags.</li>
+      <li>The treemap reveals that <strong>TV Shows are more genre-concentrated</strong> than Movies.</li>
+      <li>Children's content is a minor category — Netflix is clearly <strong>not competing with Disney+</strong> on family content.</li>
+    </ul>
+  </section>
+
+</div>
+{% endblock %}

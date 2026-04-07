@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Analysis — Netflix Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="inner-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <span class="page-eyebrow">Exploratory Data Analysis</span>
+    <h1 class="page-title">Full <span class="accent">Analysis</span></h1>
+    <p class="page-desc">
+      A complete breakdown of Netflix's catalog — from content type distribution
+      and ratings to duration patterns, seasonal trends, and year-over-year growth.
+    </p>
+  </div>
+
+  <!-- ── Section 1: Content Overview ─────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Content Overview</h2>
+    <div class="chart-grid chart-grid-2">
+
+      {% for chart in png_charts[:2] %}
+      <div class="chart-card">
+        <h3 class="chart-card-title">{{ chart.title }}</h3>
+        <div class="chart-img-wrap">
+          <img src="{{ url_for('static', filename='charts_png/' + chart.file) }}"
+               alt="{{ chart.title }}" class="chart-img" loading="lazy" />
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </section>
+
+  <!-- ── Section 2: Time Trends ───────────────────────────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Time Trends</h2>
+    <div class="chart-grid chart-grid-2">
+
+      {% for chart in png_charts[2:5] %}
+      <div class="chart-card {% if loop.last and loop.index == 3 %}chart-card-wide{% endif %}">
+        <h3 class="chart-card-title">{{ chart.title }}</h3>
+        <div class="chart-img-wrap">
+          <img src="{{ url_for('static', filename='charts_png/' + chart.file) }}"
+               alt="{{ chart.title }}" class="chart-img" loading="lazy" />
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- Interactive Plotly time series -->
+    {% for chart in html_charts %}
+    <div class="chart-card chart-card-full mt-lg">
+      <h3 class="chart-card-title">{{ chart.title }}</h3>
+      <div class="plotly-wrap">
+        <iframe src="{{ url_for('static', filename='charts/' + chart.file) }}"
+                class="plotly-iframe" frameborder="0"
+                title="{{ chart.title }}"></iframe>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ── Section 3: Advanced Heatmaps & Distributions ────── -->
+  <section class="chart-section">
+    <h2 class="chart-section-title">Deep-Dive Distributions</h2>
+    <div class="chart-grid chart-grid-2">
+
+      {% for chart in png_charts[5:] %}
+      <div class="chart-card">
+        <h3 class="chart-card-title">{{ chart.title }}</h3>
+        <div class="chart-img-wrap">
+          <img src="{{ url_for('static', filename='charts_png/' + chart.file) }}"
+               alt="{{ chart.title }}" class="chart-img" loading="lazy" />
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </section>
+
+  <!-- ── Insight Summary ──────────────────────────────────── -->
+  <section class="insight-box">
+    <h2 class="insight-title">Section Insights</h2>
+    <ul class="insight-list">
+      <li>Movies outnumber TV Shows roughly <strong>2:1</strong> — Netflix built its brand on film.</li>
+      <li><strong>TV-MA</strong> dominates ratings, confirming an adult-first content strategy.</li>
+      <li>Content additions peaked in <strong>2019</strong> before pandemic disruption.</li>
+      <li>Most movies fall in the <strong>80–120 min</strong> range — perfect for one sitting.</li>
+      <li>Over <strong>60% of TV Shows</strong> are 1-season limited runs.</li>
+    </ul>
+  </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Netflix Dashboard{% endblock %}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/netflix_icon.ico') }}" />
+  <link rel="icon" type="image/png"    href="{{ url_for('static', filename='assets/netflix_logo.png') }}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVBAR — fixed, transparent → solid on scroll
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <a href="{{ url_for('home') }}" class="nav-logo">
+      <img src="{{ url_for('static', filename='assets/netflix_logo.png') }}"
+           alt="Netflix Logo" class="logo-img" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}"      class="nav-link {% if request.endpoint == 'home'      %}active{% endif %}">Home</a></li>
+      <li><a href="{{ url_for('analysis') }}"  class="nav-link {% if request.endpoint == 'analysis'  %}active{% endif %}">Analysis</a></li>
+      <li><a href="{{ url_for('genres') }}"    class="nav-link {% if request.endpoint == 'genres'    %}active{% endif %}">Genres</a></li>
+      <li><a href="{{ url_for('countries') }}" class="nav-link {% if request.endpoint == 'countries' %}active{% endif %}">Countries</a></li>
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PAGE CONTENT
+  ══════════════════════════════════════════════════════════ -->
+  <main class="page-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER — premium dark
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <img src="{{ url_for('static', filename='assets/netflix_logo.png') }}"
+           alt="Netflix" class="footer-logo" />
+      <div class="footer-divider"></div>
+      <p class="footer-name">Anshika Mittal</p>
+      <p class="footer-meta">USN: 1AUA23BIT005 &nbsp;·&nbsp; B.Tech ICT &nbsp;·&nbsp; Semester 6</p>
+      <p class="footer-copy">© 2026 Netflix Data Visualization Dashboard</p>
+    </div>
+  </footer>
+
+  <!-- Main JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+  <div id="page-transition"></div>
+</body>
+</html>

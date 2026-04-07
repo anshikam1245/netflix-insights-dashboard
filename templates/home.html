@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Netflix Dashboard — Home{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO — full-screen cinematic banner
+═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-orb"></div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">Data Visualization Project</span>
+
+    <h1 class="hero-title">
+      What Does<br />
+      <span class="accent">Netflix</span><br />
+      Actually Show?
+    </h1>
+
+    <p class="hero-sub">
+      A deep-dive into Netflix's global catalog — uncovering content trends,
+      genre patterns, country dominance, and the platform's evolving identity
+      through data.
+    </p>
+
+    <div class="hero-cta">
+      <!-- PRIMARY CTA: plays netflix_sound.mp3 then navigates after 900ms -->
+      <button
+        id="explore-btn"
+        class="btn btn-primary"
+        data-href="/analysis"
+        data-sound="{{ url_for('static', filename='assets/netflix_sound.mp3') }}"
+        type="button"
+      >
+        <span class="btn-play-icon"></span>
+        Explore Dashboard
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-badge">
+    <span class="badge-number">8,800+</span>
+    <span class="badge-label">Titles Analysed</span>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STATS ROW
+═══════════════════════════════════════════════════════════ -->
+<section class="stats-row">
+  <div class="stat-card">
+    <span class="stat-num">~70<span class="stat-unit">%</span></span>
+    <span class="stat-desc">Content is Movies</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">100<span class="stat-unit">+</span></span>
+    <span class="stat-desc">Countries Represented</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">2019</span>
+    <span class="stat-desc">Peak Addition Year</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">TV‑MA</span>
+    <span class="stat-desc">Dominant Rating</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE CARDS — Explore the Dashboard
+═══════════════════════════════════════════════════════════ -->
+<section class="cards-section">
+  <h2 class="section-heading">Explore the Dashboard</h2>
+  <div class="page-cards">
+
+    <a href="/analysis" class="page-card">
+      <div class="page-card-icon"></div>
+      <h3 class="page-card-title">Full Analysis</h3>
+      <p class="page-card-desc">
+        EDA charts covering content types, ratings, duration, time trends,
+        and year-over-year addition patterns.
+      </p>
+      <span class="page-card-link">View →</span>
+    </a>
+
+    <a href="/genres" class="page-card">
+      <div class="page-card-icon"></div>
+      <h3 class="page-card-title">Genre Insights</h3>
+      <p class="page-card-desc">
+        Interactive treemap and bar charts breaking down the 15 most popular
+        genres across Movies and TV Shows.
+      </p>
+      <span class="page-card-link">View →</span>
+    </a>
+
+    <a href="/countries" class="page-card">
+      <div class="page-card-icon"></div>
+      <h3 class="page-card-title">Country Insights</h3>
+      <p class="page-card-desc">
+        Discover which nations lead content production and how each country's
+        genre preferences differ globally.
+      </p>
+      <span class="page-card-link">View →</span>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     KEY FINDINGS
+═══════════════════════════════════════════════════════════ -->
+<section class="findings-section">
+  <h2 class="section-heading">Key Findings</h2>
+  <div class="findings-grid">
+
+    <div class="finding-item">
+      <span class="finding-icon"></span>
+      <p>Netflix targets <strong>mature adult audiences</strong> — TV-MA is the single most common rating across both Movies and Shows.</p>
+    </div>
+    <div class="finding-item">
+      <span class="finding-icon"></span>
+      <p>Content additions <strong>peaked in 2019</strong> before COVID disrupted global production pipelines.</p>
+    </div>
+    <div class="finding-item">
+      <span class="finding-icon"></span>
+      <p><strong>International Movies</strong> is the #1 genre tag — Netflix's global ambition is baked into its catalog DNA.</p>
+    </div>
+    <div class="finding-item">
+      <span class="finding-icon">🇮🇳</span>
+      <p>India ranks <strong>2nd globally</strong> in content production, reflecting Netflix's massive South Asian investment.</p>
+    </div>
+    <div class="finding-item">
+      <span class="finding-icon"></span>
+      <p>Over <strong>60% of TV Shows</strong> have just 1 season — Netflix bets on limited series over long-running franchises.</p>
+    </div>
+    <div class="finding-item">
+      <span class="finding-icon"></span>
+      <p>Most movies run <strong>80–120 minutes</strong> — perfectly optimised for a single streaming session.</p>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
